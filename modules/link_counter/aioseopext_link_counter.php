@@ -389,18 +389,21 @@ if ( ! class_exists( 'All_in_One_SEO_Pack_Link_Counter' ) ) {
 		public function add_columns( $columns ) {
 			global $aioseop_options;
 			$columns['outgoing_internal_link_count'] = sprintf(
-			'<span class="aioseopext-lc-colum-header aioseopext-lc-tooltip-toggle" tooltip-text="%1$s"><span class="aioseopext-lc-colum-header-icon aioseopext-lc-icon-out_int_link"></span></span>',
-			esc_attr__( 'Number of outgoing internal links in posts.', 'all-in-one-seo-pack-ext' )
+			'<span class="aioseopext-lc-colum-header aioseopext-lc-tooltip-toggle" tooltip-text="%1$s"><span class="aioseopext-lc-colum-header-icon aioseopext-lc-icon-out_int_link"><span style="display:none">%2$s</span></span></span>',
+			esc_attr__( 'Number of outgoing internal links in posts.', 'all-in-one-seo-pack-ext' ),
+			esc_attr__( 'Outgoing internal links', 'all-in-one-seo-pack-ext' )
 			);
 
 			$columns['outgoing_external_link_count']  = sprintf(
-			'<span class="aioseopext-lc-colum-header aioseopext-lc-tooltip-toggle" tooltip-text="%1$s"><span class="aioseopext-lc-colum-header-icon aioseopext-lc-icon-out_ext_link"></span></span>',
-			esc_attr__( 'Number of outgoing external links in posts.', 'all-in-one-seo-pack-ext' )
+			'<span class="aioseopext-lc-colum-header aioseopext-lc-tooltip-toggle" tooltip-text="%1$s"><span class="aioseopext-lc-colum-header-icon aioseopext-lc-icon-out_ext_link"><span style="display:none">%2$s</span></span></span>',
+			esc_attr__( 'Number of outgoing external links in posts.', 'all-in-one-seo-pack-ext' ),
+			esc_attr__( 'Outgoing external links', 'all-in-one-seo-pack-ext' )
 			);
 
 			$columns['incoming_link_count']  = sprintf(
-			'<span class="aioseopext-lc-colum-header aioseopext-lc-tooltip-toggle" tooltip-text="%1$s"><span class="aioseopext-lc-colum-header-icon aioseopext-lc-icon-inc_link"></span></span>',
-			esc_attr__( 'Number of incoming links in posts.', 'all-in-one-seo-pack-ext' )
+			'<span class="aioseopext-lc-colum-header aioseopext-lc-tooltip-toggle" tooltip-text="%1$s"><span class="aioseopext-lc-colum-header-icon aioseopext-lc-icon-inc_link"><span style="display:none">%2$s</span></span></span>',
+			esc_attr__( 'Number of incoming links in posts.', 'all-in-one-seo-pack-ext' ),
+			esc_attr__( 'Incoming links', 'all-in-one-seo-pack-ext' )
 			);
 			
 			return $columns;
