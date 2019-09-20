@@ -1,5 +1,5 @@
 # All in One SEO Pack Extensions
-Extend the popular SEO plugin **All In One SEO Pack** and add new features to that plugin.
+WordPress plugin to extend the popular SEO plugin **All In One SEO Pack** and add new features to that plugin.
 
 
 
