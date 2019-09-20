@@ -1,0 +1,95 @@
+.hidden{ display: none; }
+#aioseopext_lc_progressbar_wrap {
+  width: 100%;
+  background-color: #ddd;
+  visibility: visible;
+}
+
+#aioseopext_lc_progressbar {
+  width: 0%;
+  height: 30px;
+  background-color: #4CAF50;
+  text-align: center;
+  line-height: 30px;
+  color: white;
+}
+
+.aioseopext-lc-colum-header-icon {
+  height: 20px;
+  width: 20px;
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.aioseopext-lc-icon-inc_link {
+	background-image: url(../images/incoming-link.svg);
+}
+
+.aioseopext-lc-icon-out_int_link {
+	background-image: url(../images/outgoing-internal-link.svg);
+}
+
+.aioseopext-lc-icon-out_ext_link{
+	background-image: url(../images/outgoing-external-link.svg);
+}
+
+.aioseopext-lc-tooltip-toggle {
+  cursor: pointer;
+  position: relative;
+}
+.aioseopext-lc-tooltip-toggle svg {
+  height: 20px;
+  width: 20px;
+}
+.aioseopext-lc-tooltip-toggle::before {
+  position: absolute;
+  top: -120px;
+  left: -80px;
+  /*background-color: #2B222A;*/
+  background:rgba(0,0,0,0.75);
+  border-radius: 5px;
+  color: #fff;
+  content: attr(tooltip-text);
+  padding: 1rem;
+  text-transform: none;
+  transition: all 0.5s ease;
+  width: 200px;
+  z-index: 99999999;
+}
+.aioseopext-lc-tooltip-toggle::after {
+  position: absolute;
+  top: -20px;
+  left: 9px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  /*border-top: 5px solid #2B222A;*/
+  border-top: 5px solid rgba(0,0,0,0.75);
+  content: " ";
+  font-size: 0;
+  line-height: 0;
+  margin-left: -5px;
+  width: 0;
+}
+.aioseopext-lc-tooltip-toggle::before, .aioseopext-lc-tooltip-toggle::after {
+  color: #efefef;
+  font-family: monospace;
+  font-size: 16px;
+  opacity: 0;
+  pointer-events: none;
+  text-align: left;
+}
+.aioseopext-lc-tooltip-toggle:focus::before, .aioseopext-lc-tooltip-toggle:focus::after, .aioseopext-lc-tooltip-toggle:hover::before, .aioseopext-lc-tooltip-toggle:hover::after {
+  opacity: 1;
+  transition: all 0.75s ease;
+}
+/* End tooltip and icon*/
+.fixed th.column-outgoing_internal_link_count, 
+.fixed th.column-outgoing_external_link_count, 
+.fixed th.column-incoming_link_count {
+	text-align: left;
+	width: 3em;
+	padding:0;
+	padding-left: 5px;
+}
+
