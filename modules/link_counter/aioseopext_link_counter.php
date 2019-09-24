@@ -74,14 +74,21 @@ if ( ! class_exists( 'All_in_One_SEO_Pack_Link_Counter' ) ) {
 			$this->processor = new AIOSEOPEXT_Link_Counter_Processor( $this->links_table );
 
 			if( is_admin() ) {
+
+				if( !class_exists('AIOSEOPEXT_Link_Counter_Processor') ) {
+					require_once( AIOSEOPEXT_PLUGIN_MODULES_DIR . "link_counter/class-aioseopext-link-counter-processor.php" );
+				}
+				$this->processor = new AIOSEOPEXT_Link_Counter_Processor( $this->links_table );
+
 				if( !class_exists('AIOSEOPEXT_Link_Counter_Column_Manager') ) {
 					require_once( AIOSEOPEXT_PLUGIN_MODULES_DIR . "link_counter/class-aioseopext-link-counter-column-manager.php" );
 				}
-				$this->column_manager = new AIOSEOPEXT_Link_Counter_Stat_Manager( $this );
+				$this->column_manager = new AIOSEOPEXT_Link_Counter_Column_Manager( $this );
+				
 				if( !class_exists('AIOSEOPEXT_Link_Counter_Stat_Manager') ) {
 					require_once( AIOSEOPEXT_PLUGIN_MODULES_DIR . "link_counter/class-aioseopext-link-counter-stat-manager.php" );
 				}
-				$this->column_manager = new AIOSEOPEXT_Link_Counter_Stat_Manager( $this );
+				$this->stat_manager = new AIOSEOPEXT_Link_Counter_Stat_Manager( $this );
 
 			}
 
