@@ -49,6 +49,11 @@ if ( ! class_exists( 'All_in_One_SEO_Pack_Link_Counter' ) ) {
 		 */
 		public $column_manager;
 
+		/**
+		 * @var object of AIOSEOPEXT_Link_Counter_Stat_Manager
+		 */
+		public $stat_manager;
+
 		
 		/**
 		 * All_in_One_SEO_Pack_Link_Counter constructor.
@@ -72,7 +77,11 @@ if ( ! class_exists( 'All_in_One_SEO_Pack_Link_Counter' ) ) {
 				if( !class_exists('AIOSEOPEXT_Link_Counter_Column_Manager') ) {
 					require_once( AIOSEOPEXT_PLUGIN_MODULES_DIR . "link_counter/class-aioseopext-link-counter-column-manager.php" );
 				}
-				$this->column_manager = new AIOSEOPEXT_Link_Counter_Column_Manager( $this );
+				$this->column_manager = new AIOSEOPEXT_Link_Counter_Stat_Manager( $this );
+				if( !class_exists('AIOSEOPEXT_Link_Counter_Stat_Manager') ) {
+					require_once( AIOSEOPEXT_PLUGIN_MODULES_DIR . "link_counter/class-aioseopext-link-counter-stat-manager.php" );
+				}
+				$this->column_manager = new AIOSEOPEXT_Link_Counter_Stat_Manager( $this );
 
 			}
 
@@ -204,48 +213,7 @@ if ( ! class_exists( 'All_in_One_SEO_Pack_Link_Counter' ) ) {
 		 * @return string
 		 */
 		private function get_stat_html() {
-			$status = $this->processor->get_status();
-			$counted_alreay = ( isset( $status['counted_alreay'] ) ) ? intval( $status['counted_alreay'] ) : 0;
-			if( $counted_alreay == 0 ) {
-				return __('Stat is not ready yet. We need to processe all posts to count links first. Go to "Action" section below and start counting', "all-in-one-seo-pack-ext" );
-			}
-			$html = '';
-			ob_start();
-				
-				?>
-				<table class="widefat">
-					<thead>
-						<th style="width:350px;"></th>
-						<th></th>
-					</thead>
-					<tbody>
-						<tr>
-							<td><?php _e("Total number of posts we have processed", "all-in-one-seo-pack-ext" )?></td>
-							<td><?php echo $this->processor->get_post_count(); ?></td>
-						</tr>
-
-						<tr>
-							<td><?php _e("Total number of posts those have outgoing links", "all-in-one-seo-pack-ext" )?></td>
-							<td><?php echo $this->processor->get_total_posts_conatining_outgoing_links(); ?></td>
-						</tr>
-						<tr>
-							<td><?php _e("Total number of posts those have outgoing internal links", "all-in-one-seo-pack-ext" )?></td>
-							<td><?php echo $this->processor->get_total_posts_containing_outgoing_internal_links(); ?></td>
-						</tr>
-						<tr>
-							<td><?php _e("Total number of posts those have outgoing external links", "all-in-one-seo-pack-ext" )?></td>
-							<td><?php echo $this->processor->get_total_posts_containing_outgoing_external_links(); ?></td>
-						</tr>
-						<tr>
-							<td><?php _e("Total number of posts those have incoming links", "all-in-one-seo-pack-ext" )?></td>
-							<td><?php echo $this->processor->get_total_posts_conatining_incoming_links(); ?></td>
-						</tr>
-					</tbody>
-
-				</table>
-				<?php 
-			$html = ob_get_clean();
-			return $html;
+			return $this->stat_manager->get_stat_html();
 		}
 
 		/**
