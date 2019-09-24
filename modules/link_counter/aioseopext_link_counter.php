@@ -157,8 +157,10 @@ if ( ! class_exists( 'All_in_One_SEO_Pack_Link_Counter' ) ) {
 			  to_post_id bigint(20) NOT NULL DEFAULT '0',
 			  url varchar(255) NOT NULL,
 			  type varchar(8) NOT NULL,
+			  host varchar(100) NULL,
 			  target varchar(10) NULL,
 			  rel varchar(100) NULL,
+
 		      UNIQUE KEY id (id)
 		    ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 		    ";

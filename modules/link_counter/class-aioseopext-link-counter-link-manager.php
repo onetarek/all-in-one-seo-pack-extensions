@@ -119,8 +119,11 @@ if ( ! class_exists( 'AIOSEOPEXT_Link_Counter_Link_Manager' ) ) {
 		 */
 		private function get_link_detail( $link ) {
 			
+			$url_parts = wp_parse_url( untrailingslashit( $link ) );
+			$host = isset( $url_parts['host'] ) ?  $url_parts['host'] : '';
 			$info = array();
 			$info['url'] = $link;
+			$info['host'] = $host;
 			$info['type'] = $this->get_link_type( $link );
 			$info['allowed'] = $this->is_allowed( $link , $info['type'] );
 			$info['to_post_id'] = 0;

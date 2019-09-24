@@ -299,7 +299,7 @@ if ( ! class_exists( 'AIOSEOPEXT_Link_Counter_Processor' ) ) {
 					$to_post_ids[] = $link['to_post_id'];
 				}
 				
-				$sql = $wpdb->prepare( "INSERT INTO ".$this->links_table." ( from_post_id, to_post_id,url, type, target, rel ) VALUES(%d, %d, %s, %s, %s, %s) ", $link['from_post_id'], $link['to_post_id'], $link['url'], $link['type'], $link['target'],$link['rel'] );
+				$sql = $wpdb->prepare( "INSERT INTO ".$this->links_table." ( from_post_id, to_post_id,url, type, host, target, rel ) VALUES(%d, %d, %s, %s, %s, %s, %s) ", $link['from_post_id'], $link['to_post_id'], $link['url'], $link['type'], $link['host'], $link['target'],$link['rel'] );
 				$res = $wpdb->query( $sql );
 			}
 			
