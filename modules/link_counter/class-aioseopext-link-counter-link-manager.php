@@ -73,6 +73,7 @@ if ( ! class_exists( 'AIOSEOPEXT_Link_Counter_Link_Manager' ) ) {
 			$url_parts = wp_parse_url( get_permalink( $post->ID ) );
 			$this->current_post_path = isset( $url_parts['path'] ) ? untrailingslashit( $url_parts['path'] ) : "";
 		}
+
 		/**
 		 * Extracts the href values from the string and returns them as an array.
 		 *
@@ -86,16 +87,30 @@ if ( ! class_exists( 'AIOSEOPEXT_Link_Counter_Link_Manager' ) ) {
 			}
 
 			$regexp = '<a\s[^>]*href=("??)([^" >]*?)\\1[^>]*>';
-
+			$regexp_target = '<a\s[^>]*target=("??)([^" >]*?)\\1[^>]*>';
+			$regexp_rel = '<a\s[^>]*rel=("??)([^">]*?)\\1[^>]*>';//this rule allows spaces in target.
 			// Used modifiers iU to match case insensitive and make greedy quantifiers lazy.
 			if ( preg_match_all( "/$regexp/iU", $str, $matches, PREG_SET_ORDER ) ) {
+			
 				foreach ( $matches as $match ) {
-					$links[] = trim( $match[2], "'" );
+					$link = array("url"=>"", "target" => "", "rel" => "");
+					$link['url'] = trim( $match[2], "'" );
+					$str2 = $match[0];
+					if ( preg_match_all( "/$regexp_target/iU", $str2, $matches_target, PREG_SET_ORDER ) ) {
+						$link['target'] = $matches_target[0][2];
+					}
+
+					if ( preg_match_all( "/$regexp_rel/iU", $str2, $matches_rel, PREG_SET_ORDER ) ) {
+						$link['rel'] = $matches_rel[0][2];
+					}
+
+					$links[] = $link;
+
 				}
 			}
-
 			return $links;
 		}
+
 
 		/**
 		 * Prepares information for an url
@@ -135,11 +150,13 @@ if ( ! class_exists( 'AIOSEOPEXT_Link_Counter_Link_Manager' ) ) {
 			$links_details = array();
 
 			foreach( $links as $link ) {
-				$link_detail = $this->get_link_detail( $link );
+				$link_detail = $this->get_link_detail( $link['url'] );
 				
 				if( $link_detail['allowed'] ==  false ) {
 					continue;
 				}
+				$link_detail['target'] = $link['target'];
+				$link_detail['rel'] = $link['rel'];
 				
 				$links_details[] = $link_detail;
 			}

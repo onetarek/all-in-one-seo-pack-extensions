@@ -53,7 +53,7 @@ if ( ! class_exists( 'All_in_One_SEO_Pack_Link_Counter' ) ) {
 			$this->name   = __( 'Link Counter', 'all-in-one-seo-pack-ext' );    // Human-readable name of the plugin.
 			$this->prefix = 'aioseopext_link_counter_';                        // Option prefix.
 			$this->file   = __FILE__;                                    // The current file.
-			$this->links_table = $wpdb->prefix.'aioseop_links';
+			$this->links_table = $wpdb->prefix.'aioseopext_links';
 			$this->dashboard_page = plugin_basename( $this->file );
 			//delete_option('aioseopext_link_counter_status');
 			parent::__construct();
@@ -153,10 +153,12 @@ if ( ! class_exists( 'All_in_One_SEO_Pack_Link_Counter' ) ) {
 
 		   $links_table_sql = "CREATE TABLE IF NOT EXISTS $links_table (
 		      id bigint(20) NOT NULL AUTO_INCREMENT,
-		      url varchar(255) NOT NULL,
 			  from_post_id bigint(20) NOT NULL DEFAULT '0',
 			  to_post_id bigint(20) NOT NULL DEFAULT '0',
+			  url varchar(255) NOT NULL,
 			  type varchar(8) NOT NULL,
+			  target varchar(10) NULL,
+			  rel varchar(100) NULL,
 		      UNIQUE KEY id (id)
 		    ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 		    ";

@@ -275,7 +275,7 @@ if ( ! class_exists( 'AIOSEOPEXT_Link_Counter_Processor' ) ) {
 		public function calculate_links_for_a_post( $post ) {
 			
 			$post_id = $post->ID;
-			$links_details = $this->link_manager->get_links_details( $post ); 
+			$links_details = $this->link_manager->get_links_details( $post );
 			$this->insert_links_to_db_and_update_post_meta( $links_details , $post_id );
 
 		}
@@ -299,7 +299,7 @@ if ( ! class_exists( 'AIOSEOPEXT_Link_Counter_Processor' ) ) {
 					$to_post_ids[] = $link['to_post_id'];
 				}
 				
-				$sql = $wpdb->prepare( "INSERT INTO ".$this->links_table." (url , from_post_id, to_post_id, type ) VALUES(%s, %d, %d, %s) ", $link['url'], $link['from_post_id'], $link['to_post_id'], $link['type'] );
+				$sql = $wpdb->prepare( "INSERT INTO ".$this->links_table." ( from_post_id, to_post_id,url, type, target, rel ) VALUES(%d, %d, %s, %s, %s, %s) ", $link['from_post_id'], $link['to_post_id'], $link['url'], $link['type'], $link['target'],$link['rel'] );
 				$res = $wpdb->query( $sql );
 			}
 			
