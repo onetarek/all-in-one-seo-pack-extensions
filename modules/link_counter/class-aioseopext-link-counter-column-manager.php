@@ -84,6 +84,8 @@ if ( ! class_exists( 'AIOSEOPEXT_Link_Counter_Column_Manager' ) ) {
 				} else {
 					add_action( 'manage_posts_custom_column', array( $this, 'handle_columns'), 10, 2 );
 				}
+				add_filter( 'manage_edit-' . $post_type . '_sortable_columns', array( $this, 'column_sort' ) );
+				add_action( 'pre_get_posts', array( $this, 'handle_order' ) );
 			}
 		}
 
@@ -97,19 +99,19 @@ if ( ! class_exists( 'AIOSEOPEXT_Link_Counter_Column_Manager' ) ) {
 		 */
 		public function add_columns( $columns ) {
 			global $aioseop_options;
-			$columns['outgoing_internal_link_count'] = sprintf(
+			$columns['aioseopext_oilc'] = sprintf(
 			'<span class="aioseopext-lc-colum-header aioseopext-lc-tooltip-toggle" tooltip-text="%1$s"><span class="aioseopext-lc-colum-header-icon aioseopext-lc-icon-out_int_link"><span style="display:none">%2$s</span></span></span>',
 			esc_attr__( 'Number of outgoing internal links in posts.', 'all-in-one-seo-pack-ext' ),
 			esc_attr__( 'Outgoing internal links', 'all-in-one-seo-pack-ext' )
 			);
 
-			$columns['outgoing_external_link_count']  = sprintf(
+			$columns['aioseopext_oelc']  = sprintf(
 			'<span class="aioseopext-lc-colum-header aioseopext-lc-tooltip-toggle" tooltip-text="%1$s"><span class="aioseopext-lc-colum-header-icon aioseopext-lc-icon-out_ext_link"><span style="display:none">%2$s</span></span></span>',
 			esc_attr__( 'Number of outgoing external links in posts.', 'all-in-one-seo-pack-ext' ),
 			esc_attr__( 'Outgoing external links', 'all-in-one-seo-pack-ext' )
 			);
 
-			$columns['incoming_link_count']  = sprintf(
+			$columns['aioseopext_ilc']  = sprintf(
 			'<span class="aioseopext-lc-colum-header aioseopext-lc-tooltip-toggle" tooltip-text="%1$s"><span class="aioseopext-lc-colum-header-icon aioseopext-lc-icon-inc_link"><span style="display:none">%2$s</span></span></span>',
 			esc_attr__( 'Number of incoming links in posts.', 'all-in-one-seo-pack-ext' ),
 			esc_attr__( 'Incoming links', 'all-in-one-seo-pack-ext' )
@@ -128,23 +130,71 @@ if ( ! class_exists( 'AIOSEOPEXT_Link_Counter_Column_Manager' ) ) {
 		 */
 		public function handle_columns( $column_name, $post_id ) {
 			global $aioseop_options;
-			if( !in_array($column_name, array('outgoing_internal_link_count', 'outgoing_external_link_count', 'incoming_link_count') ) ) {
+			if( !in_array($column_name, array('aioseopext_oilc', 'aioseopext_oelc', 'aioseopext_ilc') ) ) {
 				return ;
 			}
 			switch ($column_name) {
-				case 'outgoing_internal_link_count':
+				case 'aioseopext_oilc':
 					$val = intval( get_post_meta( $post_id, $this->processor::OUTGOING_INTERNAL_LINK_COUNT_POST_META , true ) );
 					break;
-				case 'outgoing_external_link_count':
+				case 'aioseopext_oelc':
 					$val = intval( get_post_meta( $post_id, $this->processor::OUTGOING_EXTERNAL_LINK_COUNT_POST_META , true ) );
 					break;	
-				case 'incoming_link_count':
+				case 'aioseopext_ilc':
 					$val = intval( get_post_meta( $post_id, $this->processor::INCOMING_LINK_COUNT_POST_META , true ) );
 					break;
 				
 			}
 			echo $val;
 			
+		}
+
+		/**
+		 * Sets the sortable columns.
+		 *
+		 * @param array $columns Array with sortable columns.
+		 *
+		 * @return array The extended array with sortable columns.
+		 */
+		public function column_sort( array $columns ) {
+			$columns['aioseopext_oilc'] = 'aioseopext_oilc';
+			$columns['aioseopext_oelc'] = 'aioseopext_oelc';
+			$columns['aioseopext_ilc'] = 'aioseopext_ilc';
+			return $columns;
+		}
+
+		/**
+		 * Modify WP_Query to hanlde order and ordeby to sort column
+		 *
+		 * @param object $query
+		 **/
+		function handle_order( $query ) {
+		    if( ! is_admin() ) {
+		    	return;
+		    }
+		        
+		 	if ( ! $query->is_main_query() || empty( $query->get( 'orderby' ) ) ) {
+		 		return;
+		 	}
+
+		    $orderby = $query->get( 'orderby');
+		    if( !in_array( $orderby, array('aioseopext_oilc', 'aioseopext_oelc', 'aioseopext_ilc') ) ) {
+				return ;
+			}
+			$meta_key = '';
+			switch ($orderby) {
+				case 'aioseopext_oilc':
+					$meta_key = $this->processor::OUTGOING_INTERNAL_LINK_COUNT_POST_META;
+					break;
+				case 'aioseopext_oelc':
+					$meta_key = $this->processor::OUTGOING_EXTERNAL_LINK_COUNT_POST_META;
+					break;	
+				case 'aioseopext_ilc':
+					$meta_key = $this->processor::INCOMING_LINK_COUNT_POST_META;
+					break;
+			}
+	        $query->set('meta_key',$meta_key);
+	        $query->set('orderby','meta_value_num');
 		}
 
 	}//END CLASS

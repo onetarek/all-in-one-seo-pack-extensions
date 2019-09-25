@@ -84,11 +84,11 @@
   transition: all 0.75s ease;
 }
 /* End tooltip and icon*/
-.fixed th.column-outgoing_internal_link_count, 
-.fixed th.column-outgoing_external_link_count, 
-.fixed th.column-incoming_link_count {
+.wp-list-table th.column-aioseopext_oilc, 
+.wp-list-table th.column-aioseopext_oelc, 
+.wp-list-table th.column-aioseopext_ilc {
 	text-align: left;
-	width: 3em;
+	width: 4em;
 	padding:0;
 	padding-left: 5px;
 }
