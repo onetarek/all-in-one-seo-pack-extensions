@@ -37,6 +37,7 @@ if ( ! class_exists( 'All_in_One_SEO_Pack_Extensions_Module_Manager' ) ) {
 					'description' => __( 'Count internal and external links in post contents and show in new columns of posts list', 'all-in-one-seo-pack-ext' ),
 					'image' => AIOSEOPEXT_PLUGIN_MODULES_URL.'link_counter/images/link-counter.png',
 					'mod_path' => AIOSEOPEXT_PLUGIN_MODULES_DIR . "link_counter/aioseopext_link_counter.php",
+					'default'     => 'on'
 				),
 				
 			);
