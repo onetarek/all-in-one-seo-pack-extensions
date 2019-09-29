@@ -145,7 +145,7 @@ if ( ! class_exists( 'AIOSEOPEXT_Link_Counter_Link_Manager' ) ) {
 		 *
 		 * @param object $post
 		 */
-		public function get_links_details( $post ) {
+		public function get_links_details( $post ) { 
 			$this->set_current_post( $post );
 			$content = apply_filters('the_content', $this->current_post->post_content );
 			$links = $this->extract_links( $content );
