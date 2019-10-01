@@ -6,7 +6,7 @@ Description: Extend the popular SEO plugin All In One SEO Pack. Add new features
 Version: 1.0.0
 Author: oneTarek
 Author URI: http://onetarek.com
-Text Domain: all-in-one-seo-pack-extensions}
+Text Domain: all-in-one-seo-pack-ext
 Domain Path: /i18n/
 */
 
@@ -69,7 +69,7 @@ if ( ! defined( 'AIOSEOPEXT_PLUGIN_MODULES_URL' ) ) {
 	define( 'AIOSEOPEXT_PLUGIN_MODULES_URL', AIOSEOPEXT_PLUGIN_URL . 'modules/' );
 }
 
-
+require_once( AIOSEOPEXT_PLUGIN_DIR . '/admin/check-main-plugin-exists.php' );
 require_once( AIOSEOPEXT_PLUGIN_DIR . '/admin/class-all-in-one-seo-pack-extensions-module-manager.php' );
 new All_in_One_SEO_Pack_Extensions_Module_Manager();
 
