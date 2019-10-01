@@ -59,6 +59,12 @@ if ( ! class_exists( 'All_in_One_SEO_Pack_Extensions_Module_Manager' ) ) {
 		}
 
 		/**
+		 * Returns the module_info array
+		 */
+		public function get_modules_info() {
+			return $this->module_info;
+		}
+		/**
 		 * Add new items to the main aiseop modules info array
 		 *
 		 * @since 1.0

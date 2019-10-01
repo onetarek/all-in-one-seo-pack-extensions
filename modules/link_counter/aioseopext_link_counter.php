@@ -159,14 +159,14 @@ if ( ! class_exists( 'All_in_One_SEO_Pack_Link_Counter' ) ) {
 		/**
 		 *	Do something on activation
 		 */
-		public function activation() {
+		public function activation() {write_log( "LINK COUNTRER ACTIVATION HOOK FIRED");
 			$this->create_db_tables();
 		}
 
 		/**
 		 *	Do something on deactivation
 		 */
-		public function deactivation() {
+		public function deactivation() {write_log( "LINK COUNTRER DEACTIVATION HOOK FIRED");
 			//deactivating
 		}
 
