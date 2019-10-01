@@ -45,7 +45,7 @@
 .aioseopext-lc-tooltip-toggle::before {
   position: absolute;
   top: -120px;
-  left: -80px;
+  right: -30px;
   /*background-color: #2B222A;*/
   background:rgba(0,0,0,0.75);
   border-radius: 5px;
@@ -84,12 +84,18 @@
   transition: all 0.75s ease;
 }
 /* End tooltip and icon*/
-.fixed th.column-outgoing_internal_link_count, 
-.fixed th.column-outgoing_external_link_count, 
-.fixed th.column-incoming_link_count {
+.wp-list-table th.column-aioseopext_oilc, 
+.wp-list-table th.column-aioseopext_oelc, 
+.wp-list-table th.column-aioseopext_ilc {
 	text-align: left;
-	width: 3em;
+	width: 4em;
 	padding:0;
 	padding-left: 5px;
 }
 
+th#aioseopext_oilc a, 
+th#aioseopext_oelc a, 
+th#aioseopext_ilc a {
+  display: inherit;
+  overflow: visible !important; 
+}

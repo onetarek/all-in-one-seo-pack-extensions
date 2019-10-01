@@ -44,6 +44,16 @@ if ( ! class_exists( 'All_in_One_SEO_Pack_Link_Counter' ) ) {
 		 */
 		public $processor;
 
+		/**
+		 * @var object of AIOSEOPEXT_Link_Counter_Post_List_Column_Manager
+		 */
+		public $column_manager;
+
+		/**
+		 * @var object of AIOSEOPEXT_Link_Counter_Stat_Manager
+		 */
+		public $stat_manager;
+
 		
 		/**
 		 * All_in_One_SEO_Pack_Link_Counter constructor.
@@ -53,7 +63,7 @@ if ( ! class_exists( 'All_in_One_SEO_Pack_Link_Counter' ) ) {
 			$this->name   = __( 'Link Counter', 'all-in-one-seo-pack-ext' );    // Human-readable name of the plugin.
 			$this->prefix = 'aioseopext_link_counter_';                        // Option prefix.
 			$this->file   = __FILE__;                                    // The current file.
-			$this->links_table = $wpdb->prefix.'aioseop_links';
+			$this->links_table = $wpdb->prefix.'aioseopext_links';
 			$this->dashboard_page = plugin_basename( $this->file );
 			//delete_option('aioseopext_link_counter_status');
 			parent::__construct();
@@ -62,6 +72,25 @@ if ( ! class_exists( 'All_in_One_SEO_Pack_Link_Counter' ) ) {
 				require_once( AIOSEOPEXT_PLUGIN_MODULES_DIR . "link_counter/class-aioseopext-link-counter-processor.php" );
 			}
 			$this->processor = new AIOSEOPEXT_Link_Counter_Processor( $this->links_table );
+
+			if( is_admin() ) {
+
+				if( !class_exists('AIOSEOPEXT_Link_Counter_Processor') ) {
+					require_once( AIOSEOPEXT_PLUGIN_MODULES_DIR . "link_counter/class-aioseopext-link-counter-processor.php" );
+				}
+				$this->processor = new AIOSEOPEXT_Link_Counter_Processor( $this->links_table );
+
+				if( !class_exists('AIOSEOPEXT_Link_Counter_Column_Manager') ) {
+					require_once( AIOSEOPEXT_PLUGIN_MODULES_DIR . "link_counter/class-aioseopext-link-counter-column-manager.php" );
+				}
+				$this->column_manager = new AIOSEOPEXT_Link_Counter_Column_Manager( $this );
+				
+				if( !class_exists('AIOSEOPEXT_Link_Counter_Stat_Manager') ) {
+					require_once( AIOSEOPEXT_PLUGIN_MODULES_DIR . "link_counter/class-aioseopext-link-counter-stat-manager.php" );
+				}
+				$this->stat_manager = new AIOSEOPEXT_Link_Counter_Stat_Manager( $this );
+
+			}
 
 
 			$this->default_options = array(
@@ -113,7 +142,6 @@ if ( ! class_exists( 'All_in_One_SEO_Pack_Link_Counter' ) ) {
 			
 			if ( is_admin() ) {
 				add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ), 20 );
-				add_action( 'admin_init', array( $this, 'register_columns_hooks' ), 2 );
 			}
 
 
@@ -153,10 +181,14 @@ if ( ! class_exists( 'All_in_One_SEO_Pack_Link_Counter' ) ) {
 
 		   $links_table_sql = "CREATE TABLE IF NOT EXISTS $links_table (
 		      id bigint(20) NOT NULL AUTO_INCREMENT,
-		      url varchar(255) NOT NULL,
 			  from_post_id bigint(20) NOT NULL DEFAULT '0',
 			  to_post_id bigint(20) NOT NULL DEFAULT '0',
+			  url varchar(255) NOT NULL,
 			  type varchar(8) NOT NULL,
+			  host varchar(100) NULL,
+			  target varchar(10) NULL,
+			  rel varchar(100) NULL,
+
 		      UNIQUE KEY id (id)
 		    ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 		    ";
@@ -188,48 +220,7 @@ if ( ! class_exists( 'All_in_One_SEO_Pack_Link_Counter' ) ) {
 		 * @return string
 		 */
 		private function get_stat_html() {
-			$status = $this->processor->get_status();
-			$counted_alreay = ( isset( $status['counted_alreay'] ) ) ? intval( $status['counted_alreay'] ) : 0;
-			if( $counted_alreay == 0 ) {
-				return __('Stat is not ready yet. We need to processe all posts to count links first. Go to "Action" section below and start counting', "all-in-one-seo-pack-ext" );
-			}
-			$html = '';
-			ob_start();
-				
-				?>
-				<table class="widefat">
-					<thead>
-						<th style="width:350px;"></th>
-						<th></th>
-					</thead>
-					<tbody>
-						<tr>
-							<td><?php _e("Total number of posts we have processed", "all-in-one-seo-pack-ext" )?></td>
-							<td><?php echo $this->processor->get_post_count(); ?></td>
-						</tr>
-
-						<tr>
-							<td><?php _e("Total number of posts those have outgoing links", "all-in-one-seo-pack-ext" )?></td>
-							<td><?php echo $this->processor->get_total_posts_conatining_outgoing_links(); ?></td>
-						</tr>
-						<tr>
-							<td><?php _e("Total number of posts those have outgoing internal links", "all-in-one-seo-pack-ext" )?></td>
-							<td><?php echo $this->processor->get_total_posts_containing_outgoing_internal_links(); ?></td>
-						</tr>
-						<tr>
-							<td><?php _e("Total number of posts those have outgoing external links", "all-in-one-seo-pack-ext" )?></td>
-							<td><?php echo $this->processor->get_total_posts_containing_outgoing_external_links(); ?></td>
-						</tr>
-						<tr>
-							<td><?php _e("Total number of posts those have incoming links", "all-in-one-seo-pack-ext" )?></td>
-							<td><?php echo $this->processor->get_total_posts_conatining_incoming_links(); ?></td>
-						</tr>
-					</tbody>
-
-				</table>
-				<?php 
-			$html = ob_get_clean();
-			return $html;
+			return $this->stat_manager->get_stat_html();
 		}
 
 		/**
@@ -325,118 +316,7 @@ if ( ! class_exists( 'All_in_One_SEO_Pack_Link_Counter' ) ) {
 
 		}
 
-		/**
-		 * Add some style and scripts to admin head section of post list page
-		 */
-		public function post_list_admin_head() {
-			wp_enqueue_style(
-				'aioseopext-module-link-counter-style',
-				AIOSEOPEXT_PLUGIN_MODULES_URL . $this->slug.'/css/aioseopext-link-counter.css',
-				array(),
-				AIOSEOPEXT_VERSION
-			);
-		}
-
-		/**
-		 * Registers hooks to add and manage new columns to post list table
-		 *
-		 * Adds link counter columns.
-		 *
-		 * @since 1.0
-		 */
-		public function register_columns_hooks() {
-			global $aioseop_options, $pagenow;
-			$aiosp_posttypecolumns = array();
-			if ( ! empty( $aioseop_options ) && ! empty( $aioseop_options['aiosp_posttypecolumns'] ) ) {
-				$aiosp_posttypecolumns = $aioseop_options['aiosp_posttypecolumns'];
-			}
-			if ( ! empty( $pagenow ) && ( $pagenow === 'upload.php' ) ) {
-				$post_type = 'attachment';
-			} elseif ( ! isset( $_REQUEST['post_type'] ) ) {
-				$post_type = 'post';
-			} else {
-				$post_type = $_REQUEST['post_type'];
-			}
-			if ( is_array( $aiosp_posttypecolumns ) && in_array( $post_type, $aiosp_posttypecolumns ) ) {
-				add_action( 'admin_head', array( $this, 'post_list_admin_head' ) );
-				
-				if ( $post_type === 'page' ) {
-					add_filter( 'manage_pages_columns', array( $this, 'add_columns') );
-				} elseif ( $post_type === 'attachment' ) {
-					//do nothing
-				} else {
-					add_filter( 'manage_posts_columns', array( $this, 'add_columns') );
-				}
-
-				if ( $post_type === 'attachment' ) {
-					//do nothing
-				} elseif ( is_post_type_hierarchical( $post_type ) ) {
-					add_action( 'manage_pages_custom_column', array( $this, 'handle_columns'), 10, 2 );
-				} else {
-					add_action( 'manage_posts_custom_column', array( $this, 'handle_columns'), 10, 2 );
-				}
-			}
-		}
-
-		/**
-		 * Adds Link Counter Columns To Post List
-		 *
-		 * @since 1.0
-		 *
-		 * @param array $columns
-		 * @return array
-		 */
-		public function add_columns( $columns ) {
-			global $aioseop_options;
-			$columns['outgoing_internal_link_count'] = sprintf(
-			'<span class="aioseopext-lc-colum-header aioseopext-lc-tooltip-toggle" tooltip-text="%1$s"><span class="aioseopext-lc-colum-header-icon aioseopext-lc-icon-out_int_link"><span style="display:none">%2$s</span></span></span>',
-			esc_attr__( 'Number of outgoing internal links in posts.', 'all-in-one-seo-pack-ext' ),
-			esc_attr__( 'Outgoing internal links', 'all-in-one-seo-pack-ext' )
-			);
-
-			$columns['outgoing_external_link_count']  = sprintf(
-			'<span class="aioseopext-lc-colum-header aioseopext-lc-tooltip-toggle" tooltip-text="%1$s"><span class="aioseopext-lc-colum-header-icon aioseopext-lc-icon-out_ext_link"><span style="display:none">%2$s</span></span></span>',
-			esc_attr__( 'Number of outgoing external links in posts.', 'all-in-one-seo-pack-ext' ),
-			esc_attr__( 'Outgoing external links', 'all-in-one-seo-pack-ext' )
-			);
-
-			$columns['incoming_link_count']  = sprintf(
-			'<span class="aioseopext-lc-colum-header aioseopext-lc-tooltip-toggle" tooltip-text="%1$s"><span class="aioseopext-lc-colum-header-icon aioseopext-lc-icon-inc_link"><span style="display:none">%2$s</span></span></span>',
-			esc_attr__( 'Number of incoming links in posts.', 'all-in-one-seo-pack-ext' ),
-			esc_attr__( 'Incoming links', 'all-in-one-seo-pack-ext' )
-			);
-			
-			return $columns;
-		}
-
-		/**
-		 * Handle Link Counter columns output
-		 *
-		 * @since 1.0
-		 *
-		 * @param array $columns
-		 * @return array
-		 */
-		public function handle_columns( $column_name, $post_id ) {
-			global $aioseop_options;
-			if( !in_array($column_name, array('outgoing_internal_link_count', 'outgoing_external_link_count', 'incoming_link_count') ) ) {
-				return ;
-			}
-			switch ($column_name) {
-				case 'outgoing_internal_link_count':
-					$val = intval( get_post_meta( $post_id, $this->processor::OUTGOING_INTERNAL_LINK_COUNT_POST_META , true ) );
-					break;
-				case 'outgoing_external_link_count':
-					$val = intval( get_post_meta( $post_id, $this->processor::OUTGOING_EXTERNAL_LINK_COUNT_POST_META , true ) );
-					break;	
-				case 'incoming_link_count':
-					$val = intval( get_post_meta( $post_id, $this->processor::INCOMING_LINK_COUNT_POST_META , true ) );
-					break;
-				
-			}
-			echo $val;
-			
-		}
+		
 		
 		
 	}//end class
