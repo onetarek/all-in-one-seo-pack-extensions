@@ -3,7 +3,7 @@ Plugin Name: Extensions For All In One SEO Pack
 Contributors: onetarek
 Author: onetarek
 Author URI: http://onetarek.com
-Plugin URI: http://pluginum.com/
+Plugin URI: http://pluginum.com
 
 Tags: SEO, SEO Link Counter, All In One SEO Pack, Extensions, Addons
 Requires at least: 3.6.0
@@ -16,7 +16,7 @@ Extend the popular SEO plugin All In One SEO Pack. Add new features and modules 
 
 == Description ==
 
-Extensions of popular SEO plugin **[All In One SEO Pack](https://wordpress.org/plugins/all-in-one-seo-pack/)** . This plugin adds new features and modules to All In One SEO Pack plugin. You will see new modules in the module manager page. To use this plugin your website must have **All In One SEO Pack** plugin installed and activated.
+Extensions of popular SEO plugin **[All In One SEO Pack](https://wordpress.org/plugins/all-in-one-seo-pack/)**. This plugin adds new features and modules to All In One SEO Pack plugin. You will see new modules in the module manager page. To use this plugin your website must have **All In One SEO Pack** plugin installed and activated.
 
 **How To Use**
 
@@ -40,7 +40,7 @@ Counting the number of internal text links in and to your post. It sounds really
 
 To see the result of link counter activate this module from module manger page, Go to link counter admin page and run link counting process once by clicking the "Start Counting" button.
 
-
+See our other plugins at **[PLUGINUM](http://pluginum.com)**
 
 
 == Installation ==

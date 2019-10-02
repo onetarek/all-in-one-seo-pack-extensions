@@ -8,3 +8,4 @@ WordPress plugin to extend the popular SEO plugin **All In One SEO Pack** and ad
 
 
 
+See our other plugins at **[PLUGINUM](http://pluginum.com)**
