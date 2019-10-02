@@ -8,12 +8,12 @@
  * @since 1.0
  */
 
-if ( ! class_exists( 'All_in_One_SEO_Pack_Extensions_Module_Manager' ) ) {
+if ( ! class_exists( 'Extensions_For_All_In_One_SEO_Pack_Module_Manager' ) ) {
 
 	/**
-	 * Class All_in_One_SEO_Pack_Extensions_Module_Manager
+	 * Class Extensions_For_All_In_One_SEO_Pack_Module_Manager
 	 */
-	class All_in_One_SEO_Pack_Extensions_Module_Manager {
+	class Extensions_For_All_In_One_SEO_Pack_Module_Manager {
 
 		/**
 		 * Module Info
@@ -25,7 +25,7 @@ if ( ! class_exists( 'All_in_One_SEO_Pack_Extensions_Module_Manager' ) ) {
 		protected $module_info = array();
 
 		/**
-		 * All_in_One_SEO_Pack_Extensions_Module_Manager constructor.
+		 * Extensions_For_All_In_One_SEO_Pack_Module_Manager constructor.
 		 *
 		 * @since 1.0
 		 *
