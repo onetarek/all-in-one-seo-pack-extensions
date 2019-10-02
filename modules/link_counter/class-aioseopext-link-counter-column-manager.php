@@ -64,7 +64,7 @@ if ( ! class_exists( 'AIOSEOPEXT_Link_Counter_Column_Manager' ) ) {
 			} elseif ( ! isset( $_REQUEST['post_type'] ) ) {
 				$post_type = 'post';
 			} else {
-				$post_type = $_REQUEST['post_type'];
+				$post_type = sanitize_text_field( $_REQUEST['post_type'] );
 			}
 			if ( is_array( $aiosp_posttypecolumns ) && in_array( $post_type, $aiosp_posttypecolumns ) ) {
 				add_action( 'admin_head', array( $this, 'post_list_admin_head' ) );
