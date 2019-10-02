@@ -4,7 +4,7 @@
  *
  * Mostly hooks modules to All-In-One-SEO-Pack module process.
  *
- * @package Extensions-For-All-In-One-SEO-Pack
+ * @package Extensions_For_All_In_One_SEO_Pack
  * @since 1.0
  */
 

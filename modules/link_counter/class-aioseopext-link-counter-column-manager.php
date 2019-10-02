@@ -3,7 +3,7 @@
 /**
  * Post List Column Manager
  *
- * @package All_in_One_SEO_Pack_Extensions
+ * @package Extensions_For_All_In_One_SEO_Pack
  * @since 1.0
  */
 
