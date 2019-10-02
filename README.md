@@ -1,4 +1,4 @@
-# All in One SEO Pack Extensions
+# Extensions For All In One SEO Pack
 WordPress plugin to extend the popular SEO plugin **All In One SEO Pack** and add new features to that plugin.
 
 

@@ -1,12 +1,12 @@
 <?php
 /*
-Plugin Name: All In One SEO Pack Extensions
-Plugin URI: http://onetarek.com/wordpress/plugins/all-in-one-seo-pack-extensions/
+Plugin Name: Extensions For All In One SEO Pack
+Plugin URI: http://pluginum.com
 Description: Extend the popular SEO plugin All In One SEO Pack. Add new features like 'Link counter'.
 Version: 1.0.0
 Author: oneTarek
 Author URI: http://onetarek.com
-Text Domain: all-in-one-seo-pack-ext
+Text Domain: ext-for-all-in-one-seo-pack
 Domain Path: /i18n/
 */
 
@@ -28,16 +28,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 /**
- * All in One SEO Pack Extensions.
+ * Extensions For All in One SEO Pack.
  * Extended features for All In One SEO Pack plugin.
  *
- * @package All-in-One-SEO-Pack-Extensions
+ * @package Extensions-For-All-In-One-SEO-Pack
  * @version 1.0.0
  */
 
 
 if ( ! defined( 'AIOSEOPEXT_PLUGIN_NAME' ) ) {
-		define( 'AIOSEOPEXT_PLUGIN_NAME', 'All in One SEO Pack Extensions' );
+		define( 'AIOSEOPEXT_PLUGIN_NAME', 'Extensions For All In One SEO Pack' );
 
 }
 if ( ! defined( 'AIOSEOPEXT_VERSION' ) ) {

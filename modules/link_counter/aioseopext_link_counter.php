@@ -60,7 +60,7 @@ if ( ! class_exists( 'All_in_One_SEO_Pack_Link_Counter' ) ) {
 		 */
 		function __construct() {
 			global $wpdb;
-			$this->name   = __( 'Link Counter', 'all-in-one-seo-pack-ext' );    // Human-readable name of the plugin.
+			$this->name   = __( 'Link Counter', 'ext-for-all-in-one-seo-pack' );    // Human-readable name of the plugin.
 			$this->prefix = 'aioseopext_link_counter_';                        // Option prefix.
 			$this->file   = __FILE__;                                    // The current file.
 			$this->links_table = $wpdb->prefix.'aioseopext_links';
@@ -117,11 +117,11 @@ if ( ! class_exists( 'All_in_One_SEO_Pack_Link_Counter' ) ) {
 
 			$this->layout = array(
 				'stat'  => array(
-					'name'      => __( 'Stat', 'all-in-one-seo-pack-ext' ),
+					'name'      => __( 'Stat', 'ext-for-all-in-one-seo-pack' ),
 					'options'   => array_keys( $stat_options ),
 				),
 				'process'  => array(
-					'name'      => __( 'Action', 'all-in-one-seo-pack-ext' ),
+					'name'      => __( 'Action', 'ext-for-all-in-one-seo-pack' ),
 					'options'   => array_keys( $process_options ),
 				),
 				
@@ -231,9 +231,9 @@ if ( ! class_exists( 'All_in_One_SEO_Pack_Link_Counter' ) ) {
 			$status = $this->processor->get_status();
 
 			$html = '';
-			$btn_text = esc_attr__("Start counting", 'all-in-one-seo-pack-ext');
-			$btn_text2 = esc_attr__("Stop counting", 'all-in-one-seo-pack-ext');
-			$modal_title = esc_attr__("Counting Process", 'all-in-one-seo-pack-ext');
+			$btn_text = esc_attr__("Start counting", 'ext-for-all-in-one-seo-pack');
+			$btn_text2 = esc_attr__("Stop counting", 'ext-for-all-in-one-seo-pack');
+			$modal_title = esc_attr__("Counting Process", 'ext-for-all-in-one-seo-pack');
 			$counted_alreay = ( isset( $status['counted_alreay'] ) ) ? intval( $status['counted_alreay'] ) : 0;
 			$has_unprocessed_items = ( isset( $status['has_unprocessed_items'] ) ) ? intval( $status['has_unprocessed_items'] ) : 0;
 			$progress_status_msg = '';
@@ -247,21 +247,21 @@ if ( ! class_exists( 'All_in_One_SEO_Pack_Link_Counter' ) ) {
 			<div id="lc_process_box_1">
 				<?php
 				if( $counted_alreay ) {
-					_e('We have processed all posts and counted links.', 'all-in-one-seo-pack-ext');
-					$btn_text = esc_attr__("Start counting again", 'all-in-one-seo-pack-ext'); 
+					_e('We have processed all posts and counted links.', 'ext-for-all-in-one-seo-pack');
+					$btn_text = esc_attr__("Start counting again", 'ext-for-all-in-one-seo-pack'); 
 				} 
 
 				if ( !$counted_alreay && !$has_unprocessed_items ) {
 					echo '<p>';
-					_e('We need to processe all posts to count links. Click on the button below to start proessing. Do not close the browser until the process done', 'all-in-one-seo-pack-ext');
+					_e('We need to processe all posts to count links. Click on the button below to start proessing. Do not close the browser until the process done', 'ext-for-all-in-one-seo-pack');
 					echo '</p>';
 					
 				} 
 				if( $has_unprocessed_items ) {
 					echo '<p>';
-					_e('A counting process was started before but was not completed.', 'all-in-one-seo-pack-ext');
+					_e('A counting process was started before but was not completed.', 'ext-for-all-in-one-seo-pack');
 					echo '</p>';
-					$btn_text = esc_attr__("Start counting again", 'all-in-one-seo-pack-ext');
+					$btn_text = esc_attr__("Start counting again", 'ext-for-all-in-one-seo-pack');
 					
 				}
 				?>
@@ -270,7 +270,7 @@ if ( ! class_exists( 'All_in_One_SEO_Pack_Link_Counter' ) ) {
 					</p>
 			</div>
 			<div id="lc_process_box_2" class="hidden">
-				<p><?php _e('Do not close the browser until the process done', 'all-in-one-seo-pack-ext'); ?></p>
+				<p><?php _e('Do not close the browser until the process done', 'ext-for-all-in-one-seo-pack'); ?></p>
 				<div id="aioseopext_lc_progressbar_wrap"><div id="aioseopext_lc_progressbar" style="width:<?php echo esc_attr( $progress_percentage ) ?>%"></div></div>
 				<div id="aioseopext_lc_progress_status"><?php echo $progress_status_msg ?></div>
 				<p>

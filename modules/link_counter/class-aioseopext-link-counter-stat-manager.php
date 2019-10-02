@@ -38,7 +38,7 @@ if ( ! class_exists( 'AIOSEOPEXT_Link_Counter_Stat_Manager' ) ) {
 			$status = $this->processor->get_status();
 			$counted_alreay = ( isset( $status['counted_alreay'] ) ) ? intval( $status['counted_alreay'] ) : 0;
 			if( $counted_alreay == 0 ) {
-				return __('Stat is not ready yet. We need to processe all posts to count links first. Go to "Action" section below and start counting', "all-in-one-seo-pack-ext" );
+				return __('Stat is not ready yet. We need to processe all posts to count links first. Go to "Action" section below and start counting', "ext-for-all-in-one-seo-pack" );
 			}
 			$html = '';
 			ob_start();
@@ -51,24 +51,24 @@ if ( ! class_exists( 'AIOSEOPEXT_Link_Counter_Stat_Manager' ) ) {
 					</thead>
 					<tbody>
 						<tr>
-							<td><?php _e("Total number of posts we have processed", "all-in-one-seo-pack-ext" )?></td>
+							<td><?php _e("Total number of posts we have processed", "ext-for-all-in-one-seo-pack" )?></td>
 							<td><?php echo $this->processor->get_post_count(); ?></td>
 						</tr>
 
 						<tr>
-							<td><?php _e("Total number of posts those have outgoing links", "all-in-one-seo-pack-ext" )?></td>
+							<td><?php _e("Total number of posts those have outgoing links", "ext-for-all-in-one-seo-pack" )?></td>
 							<td><?php echo $this->processor->get_total_posts_conatining_outgoing_links(); ?></td>
 						</tr>
 						<tr>
-							<td><?php _e("Total number of posts those have outgoing internal links", "all-in-one-seo-pack-ext" )?></td>
+							<td><?php _e("Total number of posts those have outgoing internal links", "ext-for-all-in-one-seo-pack" )?></td>
 							<td><?php echo $this->processor->get_total_posts_containing_outgoing_internal_links(); ?></td>
 						</tr>
 						<tr>
-							<td><?php _e("Total number of posts those have outgoing external links", "all-in-one-seo-pack-ext" )?></td>
+							<td><?php _e("Total number of posts those have outgoing external links", "ext-for-all-in-one-seo-pack" )?></td>
 							<td><?php echo $this->processor->get_total_posts_containing_outgoing_external_links(); ?></td>
 						</tr>
 						<tr>
-							<td><?php _e("Total number of posts those have incoming links", "all-in-one-seo-pack-ext" )?></td>
+							<td><?php _e("Total number of posts those have incoming links", "ext-for-all-in-one-seo-pack" )?></td>
 							<td><?php echo $this->processor->get_total_posts_conatining_incoming_links(); ?></td>
 						</tr>
 					</tbody>

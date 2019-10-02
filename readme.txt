@@ -1,9 +1,9 @@
-=== All In One SEO Pack Extensions ===
-Plugin Name: All In One SEO Pack Extensions
+=== Extensions For All In One SEO Pack ===
+Plugin Name: Extensions For All In One SEO Pack
 Contributors: onetarek
 Author: onetarek
 Author URI: http://onetarek.com
-Plugin URI: http://onetarek.com/wordpress/plugins/all-in-one-seo-pack-extensions/
+Plugin URI: http://pluginum.com/
 
 Tags: SEO, SEO Link Counter, All In One SEO Pack, Extensions, Addons
 Requires at least: 3.6.0
@@ -47,11 +47,11 @@ To see the result of link counter activate this module from module manger page, 
 
 = Modern Way: =
 1. Go to the WordPress Dashboard "Add New Plugin" section.
-2. Search For "All In One SEO Pack Extensions". 
+2. Search For "Extensions For All In One SEO Pack". 
 3. Install, then Activate it.
 
 = Old Way: =
-1. Upload the `all-in-one-seo-pack-extensions` folder to the `/wp-content/plugins/` directory
+1. Upload the `extensions-for-all-in-one-seo-pack` folder to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress.
 
 

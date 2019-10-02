@@ -130,7 +130,7 @@ if ( ! class_exists( 'AIOSEOPEXT_Link_Counter_Processor' ) ) {
 			//check permision 
 			if( !current_user_can( 'manage_options' ) ){
 				$response['status'] = 'fail';
-				$response['message'] = __( 'You are  not permitted to do this', 'all-in-one-seo-pack-ext' );
+				$response['message'] = __( 'You are  not permitted to do this', 'ext-for-all-in-one-seo-pack' );
 				wp_send_json( $response );
 				return;
 			}
@@ -406,7 +406,7 @@ if ( ! class_exists( 'AIOSEOPEXT_Link_Counter_Processor' ) ) {
 			if( $has_unprocessed_items ) {
 				$msg = sprintf( __( "%d of %d posts have been processed", 'all-in-one-seo-pack' ), $total_processed, $total_post_count );
 			} else {
-				$msg = __( 'Process completed! We have processed all posts and counted links.', 'all-in-one-seo-pack-ext' );
+				$msg = __( 'Process completed! We have processed all posts and counted links.', 'ext-for-all-in-one-seo-pack' );
 			}
 			return $msg;
 		}
