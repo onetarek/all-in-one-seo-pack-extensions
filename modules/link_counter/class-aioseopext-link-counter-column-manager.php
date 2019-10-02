@@ -3,7 +3,7 @@
 /**
  * Post List Column Manager
  *
- * @package All_in_One_SEO_Pack_Extensions
+ * @package Extensions_For_All_In_One_SEO_Pack
  * @since 1.0
  */
 
@@ -101,20 +101,20 @@ if ( ! class_exists( 'AIOSEOPEXT_Link_Counter_Column_Manager' ) ) {
 			global $aioseop_options;
 			$columns['aioseopext_oilc'] = sprintf(
 			'<span class="aioseopext-lc-colum-header aioseopext-lc-tooltip-toggle" tooltip-text="%1$s"><span class="aioseopext-lc-colum-header-icon aioseopext-lc-icon-out_int_link"><span style="display:none">%2$s</span></span></span>',
-			esc_attr__( 'Number of outgoing internal links in posts.', 'all-in-one-seo-pack-ext' ),
-			esc_attr__( 'Outgoing internal links', 'all-in-one-seo-pack-ext' )
+			esc_attr__( 'Number of outgoing internal links in posts.', 'ext-for-all-in-one-seo-pack' ),
+			esc_attr__( 'Outgoing internal links', 'ext-for-all-in-one-seo-pack' )
 			);
 
 			$columns['aioseopext_oelc']  = sprintf(
 			'<span class="aioseopext-lc-colum-header aioseopext-lc-tooltip-toggle" tooltip-text="%1$s"><span class="aioseopext-lc-colum-header-icon aioseopext-lc-icon-out_ext_link"><span style="display:none">%2$s</span></span></span>',
-			esc_attr__( 'Number of outgoing external links in posts.', 'all-in-one-seo-pack-ext' ),
-			esc_attr__( 'Outgoing external links', 'all-in-one-seo-pack-ext' )
+			esc_attr__( 'Number of outgoing external links in posts.', 'ext-for-all-in-one-seo-pack' ),
+			esc_attr__( 'Outgoing external links', 'ext-for-all-in-one-seo-pack' )
 			);
 
 			$columns['aioseopext_ilc']  = sprintf(
 			'<span class="aioseopext-lc-colum-header aioseopext-lc-tooltip-toggle" tooltip-text="%1$s"><span class="aioseopext-lc-colum-header-icon aioseopext-lc-icon-inc_link"><span style="display:none">%2$s</span></span></span>',
-			esc_attr__( 'Number of incoming links in posts.', 'all-in-one-seo-pack-ext' ),
-			esc_attr__( 'Incoming links', 'all-in-one-seo-pack-ext' )
+			esc_attr__( 'Number of incoming links in posts.', 'ext-for-all-in-one-seo-pack' ),
+			esc_attr__( 'Incoming links', 'ext-for-all-in-one-seo-pack' )
 			);
 			
 			return $columns;
