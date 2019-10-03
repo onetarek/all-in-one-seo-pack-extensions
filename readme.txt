@@ -4,7 +4,6 @@ Contributors: onetarek
 Author: onetarek
 Author URI: http://onetarek.com
 Plugin URI: http://pluginum.com
-
 Tags: SEO, SEO Link Counter, All In One SEO Pack, Extensions, Addons
 Requires at least: 3.6.0
 Tested up to: 5.2.3

@@ -7,5 +7,7 @@ WordPress plugin to extend the popular SEO plugin **All In One SEO Pack** and ad
 * **Link Counter** : Count internal and external links in post contents and show in new columns of posts list. See overall links stat in admin page.   
 
 
+**[DOWNLOAD FROM WORDPRESS.ORG](https://wordpress.org/plugins/extensions-for-all-in-one-seo-pack/)**
+
 
 See our other plugins at **[PLUGINUM](http://pluginum.com)**
