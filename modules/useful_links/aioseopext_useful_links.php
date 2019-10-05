@@ -56,12 +56,12 @@ if ( ! class_exists( 'All_in_One_SEO_Pack_Useful_Links' ) ) {
 		/**
 		 * Override the parent function with a blank function to stop adding admin menu for this module.
 		 */
-		function add_menu( $parent_slug ){}
+		//function add_menu( $parent_slug ){}
 
 		/**
 		 * Override the parent function with a blank function to stop adding adminbar submenu for this module.
 		 */
-		function add_admin_bar_submenu(){}
+		//function add_admin_bar_submenu(){}
 
 		/**
 		 * Add new links to adminbar
