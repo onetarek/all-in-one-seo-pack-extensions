@@ -4,10 +4,10 @@ Contributors: onetarek
 Author: onetarek
 Author URI: http://onetarek.com
 Plugin URI: http://pluginum.com
-Tags: SEO, SEO Link Counter, All In One SEO Pack, Extensions, Addons
+Tags: SEO, SEO Link Counter, All In One SEO Pack, Extensions, Addons, SEO tools links
 Requires at least: 3.6.0
 Tested up to: 5.2.3
-Stable tag: 1.0.0
+Stable tag: 1.1.0
 License: GPLv2+
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -39,6 +39,27 @@ Counting the number of internal text links in and to your post. It sounds really
 
 To see the result of link counter activate this module from module manger page, Go to link counter admin page and run link counting process once by clicking the "Start Counting" button.
 
+
+**Useful Links** 
+
+Show useful links for SEO tools in adminbar. It is very handy. When you visit your website you will see new links under the SEO menu in adminbar. These links will take you to variuos SEO tools with your current page url. See the list of tools name below.
+
+*	Google Ads
+*	Google Trends
+*	Check links to this URL
+*	Check Keyphrase Density
+*	Check Google Cache
+*	Check Headers
+*	Google Structured Data Test
+*	Facebook Debugger
+*	Pinterest Rich Pins Validator
+*	HTML Validator
+*	CSS Validator
+*	Google Page Speed Test
+*	Mobile-Friendly Test 
+
+
+
 See our other plugins at **[PLUGINUM](http://pluginum.com)**
 
 
@@ -64,10 +85,18 @@ See our other plugins at **[PLUGINUM](http://pluginum.com)**
 
 
 == Changelog ==
+
+= 1.1.0 - October 05, 2019 =
+* **New Module** : Useful Links - Show useful links for SEO tools in adminbar.
+
 = 1.0.0 - October 02, 2019 =
 * Initial release with 'link counter' module.
 
 
 == Upgrade Notice ==
+
+= 1.1.0 - October 05, 2019 =
+* **New Module** : Useful Links - Show useful links for SEO tools in adminbar.
+
 = 1.0.0 - October 02, 2019 =
 * Initial release with 'link counter' module.

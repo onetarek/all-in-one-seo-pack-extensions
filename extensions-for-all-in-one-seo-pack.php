@@ -3,7 +3,7 @@
 Plugin Name: Extensions For All In One SEO Pack
 Plugin URI: http://pluginum.com
 Description: Extend the popular SEO plugin All In One SEO Pack. Add new features like 'Link counter'.
-Version: 1.0.0
+Version: 1.1.0
 Author: oneTarek
 Author URI: http://onetarek.com
 Text Domain: ext-for-all-in-one-seo-pack
@@ -32,7 +32,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * Extended features for All In One SEO Pack plugin.
  *
  * @package Extensions-For-All-In-One-SEO-Pack
- * @version 1.0.0
+ * @version 1.1.0
  */
 
 
@@ -41,7 +41,7 @@ if ( ! defined( 'AIOSEOPEXT_PLUGIN_NAME' ) ) {
 
 }
 if ( ! defined( 'AIOSEOPEXT_VERSION' ) ) {
-	define( 'AIOSEOPEXT_VERSION', '1.0.0' );
+	define( 'AIOSEOPEXT_VERSION', '1.1.0' );
 }
 
 if ( ! defined( 'AIOSEOPEXT_PLUGIN_DIR' ) ) {
