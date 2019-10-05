@@ -38,6 +38,13 @@ if ( ! class_exists( 'Extensions_For_All_In_One_SEO_Pack_Module_Manager' ) ) {
 					'image' => AIOSEOPEXT_PLUGIN_MODULES_URL.'link_counter/images/link-counter.png',
 					'mod_path' => AIOSEOPEXT_PLUGIN_MODULES_DIR . "link_counter/aioseopext_link_counter.php",
 				),
+				'useful_links'           => array(
+					'name'        => __( 'Useful Links', 'ext-for-all-in-one-seo-pack' ),
+					'description' => __( 'Show useful links for SEO tools in adminbar', 'ext-for-all-in-one-seo-pack' ),
+					'image' => AIOSEOPEXT_PLUGIN_MODULES_URL.'useful_links/images/useful-links.png',
+					'mod_path' => AIOSEOPEXT_PLUGIN_MODULES_DIR . "useful_links/aioseopext_useful_links.php",
+					'default'     => 'on',
+				),
 				
 			);
 
